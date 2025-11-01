@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🎆 Lena • Happy 30!</title>
-  <!-- важно для подпапок -->
   <base href="./">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -16,62 +15,119 @@
     }
     canvas{position:fixed;inset:0;z-index:0}
     .shell{display:grid;place-items:center;height:100%;z-index:3;transform:translateY(-5vh)}
-    .card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);
-      backdrop-filter:blur(12px);border-radius:25px;padding:30px;text-align:center;
-      box-shadow:0 10px 40px rgba(0,0,0,0.5);}
+    .card{
+      background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter:blur(12px);border-radius:25px;padding:30px 36px;text-align:center;
+      box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    }
     h1{
       font-family:Montserrat;font-weight:800;font-size:clamp(40px,6vw,80px);
       background:conic-gradient(from 200deg,var(--cyan),var(--pink),var(--amber),var(--vio));
       -webkit-background-clip:text;color:transparent;text-shadow:0 0 18px rgba(255,255,255,.35);
       margin:0 0 10px;
     }
-    img.pfp{width:260px;height:260px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 0 25px rgba(255,255,255,0.3)}
-    .btns{margin-top:20px;display:flex;gap:10px;justify-content:center}
-    button{cursor:pointer;border:none;border-radius:10px;padding:12px 18px;font-weight:700;font-size:16px;
-      color:#0a1726;background:linear-gradient(180deg,#fff,#e9f3ff);box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.2s}
+    /* Подзаголовок — 3x крупнее */
+    .tagline{
+      margin:14px 0 8px;
+      font-weight:600;
+      font-size:clamp(22px,3.2vw,48px);
+      line-height:1.2;
+      opacity:.95;
+    }
+
+    img.pfp{
+      width:260px;height:260px;border-radius:50%;object-fit:cover;
+      border:4px solid #fff;box-shadow:0 0 25px rgba(255,255,255,0.3)
+    }
+
+    .btns{margin-top:20px;display:flex;gap:18px;justify-content:center}
+    /* Кнопки — 2x крупнее */
+    button{
+      cursor:pointer;border:none;border-radius:16px;
+      padding:20px 28px;font-weight:800;font-size:32px;
+      color:#0a1726;background:linear-gradient(180deg,#fff,#e9f3ff);
+      box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.2s
+    }
     button:hover{transform:translateY(-2px)}
 
     .poem-quote{
-      position:fixed;bottom:1.5vh;left:50%;transform:translateX(-50%);text-align:center;z-index:5;
+      position:fixed;
+      left:50%; transform:translateX(-50%);
+      bottom: calc(env(safe-area-inset-bottom) + 12px);
+      text-align:center; z-index:5;
       font-family:Montserrat;font-weight:800;font-size:clamp(18px,2vw,28px);
       background:conic-gradient(from 180deg,#7de1ff,#ff7de5,#ffd38a,#b89cff);
       -webkit-background-clip:text;color:transparent;text-shadow:0 0 12px rgba(255,255,255,0.6);
       animation:glow 4s ease-in-out infinite;
+      pointer-events:none; max-width:92vw; line-height:1.1;
     }
     @keyframes glow{0%,100%{text-shadow:0 0 8px rgba(255,255,255,0.6)}50%{text-shadow:0 0 20px rgba(255,255,255,0.9)}}
 
-    /* фото-залп */
+    /* Фото-проектыли — 2x размер */
     .photo-fall{
-      position:fixed;left:0;top:0;width:130px;height:130px;border-radius:18px;object-fit:cover;
+      position:fixed;left:0;top:0;width:260px;height:260px;border-radius:24px;object-fit:cover;
       box-shadow:0 12px 28px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.9) inset;
       transform:translate3d(0,0,0) rotateY(0deg) rotateZ(0deg);
       opacity:.95;will-change:transform,opacity;pointer-events:none;z-index:4;
     }
-    /* доллары (svg) */
     .bill{
       position:fixed;left:0;top:0;width:96px;height:48px;opacity:.98;z-index:4;
       transform:translate3d(0,0,0) rotate(0deg) rotateY(0deg);
       will-change:transform,opacity;pointer-events:none;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35));
     }
 
-    /* подарок + яркая подпись */
-    .gift-cta{position:fixed;right:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:6}
+    .gift-cta{position:fixed;right:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;z-index:6}
+    /* Текст подарка — 3x крупнее */
     .gift-label{
       font-family:Montserrat;font-weight:800;cursor:pointer;text-align:right;white-space:nowrap;
       background:linear-gradient(90deg,#6ecbff,#1e90ff,#6ecbff);
       -webkit-background-clip:text;color:transparent;
       animation:shimmer 3s linear infinite, pulse 1.6s ease-in-out infinite;
+      font-size:clamp(24px,3.2vw,48px);
+      line-height:1.05;
+      text-shadow:0 0 12px #6ecbff66;
     }
     @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
     @keyframes pulse{0%,100%{text-shadow:0 0 10px #6ecbff80}50%{text-shadow:0 0 20px #6ecbff}}
-    .gift-img{width:72px;height:72px;border-radius:14px;object-fit:cover;cursor:pointer;
+    /* Картинка подарка — 2x больше */
+    .gift-img{width:144px;height:144px;border-radius:20px;object-fit:cover;cursor:pointer;
       box-shadow:0 10px 24px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.65) inset}
     .gift-img:hover{transform:translateY(-2px) scale(1.03)}
 
-    /* dula.png fly-in */
     .dula{
-      position:fixed;left:0;top:0;width:140px;height:140px;transform-origin:50% 50%;
+      position:fixed;left:0;top:0;width:240px;height:240px;transform-origin:50% 50%;
       pointer-events:none;z-index:8;opacity:0;filter:drop-shadow(0 12px 26px rgba(0,0,0,.45));
+    }
+
+    /* ======= MOBILE ======= */
+    @media (max-width:520px){
+      .shell{ transform: translateY(-2vh); }
+      .card{ padding:18px 16px; border-radius:20px; }
+      h1{ font-size:clamp(32px,9vw,56px); }
+      img.pfp{ width:200px; height:200px; }
+      .btns{ gap:12px; margin-top:12px; margin-bottom:84px; }
+      button{ padding:16px 20px; font-size:26px; border-radius:14px; }
+      .poem-quote{ font-size:clamp(14px,4.6vw,18px);
+                   bottom: calc(env(safe-area-inset-bottom) + 8px); }
+      .gift-img{ width:120px; height:120px; }
+      .gift-label{ font-size:clamp(22px,6vw,38px); }
+    }
+
+    /* ======= DESKTOP UPSCALE ======= */
+    @media (min-width:768px){
+      .shell{ transform:translateY(-7vh);}
+      .card{ width:min(92vw,980px); padding:40px 48px; border-radius:28px;}
+      h1{ font-size:clamp(56px,6vw,96px); margin-bottom:16px;}
+      img.pfp{ width:320px;height:320px;box-shadow:0 0 30px rgba(255,255,255,.35);}
+      .btns{ gap:22px; margin-top:18px; margin-bottom:32px;}
+      .poem-quote{ font-size:clamp(18px,1.6vw,28px);}
+    }
+    @media (min-width:1200px){
+      .shell{ transform:translateY(-8vh);}
+      .card{ width:min(88vw,1100px); padding:48px 56px;}
+      h1{ font-size:clamp(64px,5.4vw,110px);}
+      img.pfp{ width:360px;height:360px;}
+      .btns{ margin-bottom:36px;}
     }
   </style>
 </head>
@@ -81,9 +137,8 @@
   <div class="shell">
     <div class="card">
       <h1>Happy 30th, Лена!</h1>
-      <!-- friend.jpg из /public -->
       <img class="pfp" id="pfp" alt="Лена">
-      <p>Пусть этот год будет ярче салютов над Чикаго ✨</p>
+      <p class="tagline">Пусть этот год будет ярче салютов над Чикаго</p>
       <div class="btns">
         <button id="boom">Салют!</button>
         <button id="conf">Конфетти!</button>
@@ -92,192 +147,110 @@
   </div>
 
   <div class="poem-quote">
-    💵 Лена в банке — как рыба в воде,<br>
+     Лена в банке — как рыба в воде,<br>
     Где деньги крутятся — Лена везде!<br>
     В отделе стирки купюр без стирки —<br>
-    Она звезда финансовой интриги! 😄
+    Она звезда финансовой интриги! 
   </div>
 
-  <!-- Подарок внизу справа -->
   <div class="gift-cta" id="giftCta" title="Нажми — получи подарок 😉">
     <div class="gift-label" id="giftLabel">Получить<br>подарок от Женька</div>
     <img class="gift-img" id="giftBox" alt="Подарок">
   </div>
 
   <script>
-    /* ----- BASE для всех ассетов из /public ----- */
-    const BASE = document.baseURI; // например https://host/subdir/
-
-    // Проставим src для статичных img через BASE
-    document.getElementById('pfp').src    = new URL('friend.jpg',  BASE).href;
+    const BASE = document.baseURI;
+    document.getElementById('pfp').src     = new URL('friend.jpg',  BASE).href;
     document.getElementById('giftBox').src = new URL('present.jpg', BASE).href;
 
-    /* ===== Canvas: фейерверк-частицы ===== */
-    const c = document.getElementById('fx'), ctx = c.getContext('2d');
-    let W, H, DPR;
-    function resize(){
-      DPR = window.devicePixelRatio || 1;
-      W = c.width  = innerWidth * DPR;
-      H = c.height = innerHeight * DPR;
-      c.style.width = innerWidth + 'px';
-      c.style.height = innerHeight + 'px';
-    }
-    resize(); addEventListener('resize', resize);
-
-    const COLORS = ['#9ad0ff','#ffd29a','#ff9ad6','#b3ffa8','#fff5a6','#c6b1ff'];
-    const GRAV = 0.055, AIR = 0.996;
-    let parts = [];
-
-    class P{
-      constructor(x,y,vx,vy,life,col,sz){Object.assign(this,{x,y,vx,vy,life,age:0,col,sz});}
+    /* ===== Fireworks canvas ===== */
+    const c=document.getElementById('fx'),ctx=c.getContext('2d');let W,H,DPR;
+    function resize(){DPR=window.devicePixelRatio||1;W=c.width=innerWidth*DPR;H=c.height=innerHeight*DPR;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
+    resize();addEventListener('resize',resize);
+    const COLORS=['#9ad0ff','#ffd29a','#ff9ad6','#b3ffa8','#fff5a6','#c6b1ff'];const GRAV=0.055,AIR=0.996;let parts=[];
+    class P{constructor(x,y,vx,vy,life,col,sz){Object.assign(this,{x,y,vx,vy,life,age:0,col,sz});}
       step(dt){this.age+=dt;this.vy+=GRAV*dt;const fr=Math.pow(AIR,dt);this.vx*=fr;this.vy*=fr;this.x+=this.vx*dt;this.y+=this.vy*dt;}
-      draw(){const t=1-this.age/this.life;if(t<=0)return false;ctx.globalCompositeOperation='screen';ctx.globalAlpha=Math.max(0,t);ctx.fillStyle=this.col;ctx.beginPath();ctx.arc(this.x,this.y,this.sz,0,6.283);ctx.fill();return true;}
-    }
-    function firework(cx, cy){
-      for(let i=0;i<320;i++){
-        const a=Math.random()*6.283, sp=(2+Math.random()*5)*DPR; const col=COLORS[i%COLORS.length];
-        parts.push(new P(cx,cy,Math.cos(a)*sp,Math.sin(a)*sp,110+Math.random()*90,col,1.8*DPR));
-      }
-    }
-    function loop(){
-      ctx.clearRect(0,0,W,H); ctx.fillStyle='rgba(6,14,28,.25)'; ctx.fillRect(0,0,W,H);
-      parts = parts.filter(p=>{p.step(1); return p.draw();});
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
+      draw(){const t=1-this.age/this.life;if(t<=0)return false;ctx.globalCompositeOperation='screen';ctx.globalAlpha=Math.max(0,t);ctx.fillStyle=this.col;ctx.beginPath();ctx.arc(this.x,this.y,this.sz,0,6.283);ctx.fill();return true;}}
+    function firework(cx,cy){for(let i=0;i<320;i++){const a=Math.random()*6.283,sp=(2+Math.random()*5)*DPR,col=COLORS[i%COLORS.length];parts.push(new P(cx,cy,Math.cos(a)*sp,Math.sin(a)*sp,110+Math.random()*90,col,1.8*DPR));}}
+    function loop(){ctx.clearRect(0,0,W,H);ctx.fillStyle='rgba(6,14,28,.25)';ctx.fillRect(0,0,W,H);parts=parts.filter(p=>{p.step(1);return p.draw()});requestAnimationFrame(loop);}requestAnimationFrame(loop);
 
-    /* ===== Аудио к «Салют!» (из /public) ===== */
-    const song = new Audio(new URL('Irina.mp3', BASE).href); 
-    song.volume = 0.4;
-
-    /* ===== Фото-залп на «Салют!» ===== */
-    const PHOTOS = ['sasha.png','sasha_2.png','id.png'].map(n => new URL(n, BASE).href);
-    const photoProjectiles = [];
-    const PHOTO_G = 1200/4, PHOTO_AIR = 0.994, MAX_AGE = 9;
-
+    /* ===== Audio + photo burst (2x size) ===== */
+    const song=new Audio(new URL('Irina.mp3',BASE).href);song.volume=.4;
+    const PHOTOS=['sasha.png','sasha_2.png','id.png'].map(n=>new URL(n,BASE).href);
+    const photoProjectiles=[];const PHOTO_G=1200/4,PHOTO_AIR=0.994,MAX_AGE=9;
     class PhotoProjectile{
-      constructor(src, cx, cy){
-        this.el = new Image(); this.el.src = src; this.el.className='photo-fall';
-        document.body.appendChild(this.el);
-        this.w=130; this.h=130;
-        this.x = cx - this.w/2; this.y = cy - this.h/2;
-        const ang=Math.random()*Math.PI*2, speed=280+Math.random()*440;
-        this.vx = Math.cos(ang)*speed; this.vy = Math.sin(ang)*speed - 120;
-        this.ry = Math.random()*360; this.rz = Math.random()*60-30; this.spinY = 60+Math.random()*120;
-        this.age=0; this.opacity=.98; this.updateEl();
+      constructor(src,cx,cy){
+        this.el=new Image();this.el.src=src;this.el.className='photo-fall';document.body.appendChild(this.el);
+        this.w=260;this.h=260;                        // 2x
+        this.x=cx-this.w/2;this.y=cy-this.h/2;
+        const ang=Math.random()*Math.PI*2,speed=280+Math.random()*440;
+        this.vx=Math.cos(ang)*speed;this.vy=Math.sin(ang)*speed-120;
+        this.ry=Math.random()*360;this.rz=Math.random()*60-30;this.spinY=60+Math.random()*120;
+        this.age=0;this.opacity=.98;this.updateEl();
       }
       step(dt){
-        this.age += dt;
-        this.vx *= Math.pow(PHOTO_AIR, dt*60);
-        this.vy = this.vy*Math.pow(PHOTO_AIR, dt*60) + PHOTO_G*dt;
-        this.x += this.vx*dt; this.y += this.vy*dt;
-        this.ry += this.spinY*dt; this.rz += 8*dt;
-        if(this.y>innerHeight+200 || this.age>MAX_AGE) this.opacity -= 2*dt;
-        this.updateEl(); return this.opacity>0;
+        this.age+=dt;
+        this.vx*=Math.pow(PHOTO_AIR,dt*60);
+        this.vy=this.vy*Math.pow(PHOTO_AIR,dt*60)+PHOTO_G*dt;
+        this.x+=this.vx*dt;this.y+=this.vy*dt;
+        this.ry+=this.spinY*dt;this.rz+=8*dt;
+        if(this.y>innerHeight+240||this.age>MAX_AGE)this.opacity-=2*dt;
+        this.updateEl();return this.opacity>0;
       }
       updateEl(){
-        this.el.style.opacity = Math.max(0,Math.min(1,this.opacity));
+        this.el.style.opacity=Math.max(0,Math.min(1,this.opacity));
         this.el.style.transform=`translate3d(${this.x}px,${this.y}px,0) rotateY(${this.ry}deg) rotateZ(${this.rz}deg)`;
       }
-      destroy(){ this.el.remove(); }
+      destroy(){this.el.remove();}
     }
-    (function photoLoop(){
-      let last=performance.now();
-      function step(ts){
-        const dt = Math.min(0.05,(ts-last)/1000); last=ts;
-        for(let i=photoProjectiles.length-1;i>=0;i--){
-          if(!photoProjectiles[i].step(dt)){ photoProjectiles[i].destroy(); photoProjectiles.splice(i,1); }
-        }
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    })();
-    function burstPhotos(n=8){
-      const cx = innerWidth/2, cy = innerHeight*0.38;
-      for(let i=0;i<n;i++){
-        const src = PHOTOS[i%PHOTOS.length];
-        photoProjectiles.push(new PhotoProjectile(src,cx,cy));
-      }
-    }
+    (function(){let last=performance.now();function step(ts){const dt=Math.min(0.05,(ts-last)/1000);last=ts;for(let i=photoProjectiles.length-1;i>=0;i--){if(!photoProjectiles[i].step(dt)){photoProjectiles[i].destroy();photoProjectiles.splice(i,1);}}requestAnimationFrame(step);}requestAnimationFrame(step);})();
+    function burstPhotos(n=8){const cx=innerWidth/2,cy=innerHeight*0.38;for(let i=0;i<n;i++){photoProjectiles.push(new PhotoProjectile(PHOTOS[i%PHOTOS.length],cx,cy));}}
 
-    /* ===== Доллар-конфетти (inline SVG) ===== */
-    const SVG_NS = 'http://www.w3.org/2000/svg';
-    const bills=[]; const BILL_G=900, BILL_AIR=0.993, WIND=20, FLUTTER=120;
-
-    function createBillSVG(){
-      const svg = document.createElementNS(SVG_NS,'svg');
-      svg.setAttribute('viewBox','0 0 160 80');
-      svg.setAttribute('width','96');
-      svg.setAttribute('height','48');
-      svg.classList.add('bill');
-
-      const defs = document.createElementNS(SVG_NS,'defs');
-      const grad = document.createElementNS(SVG_NS,'linearGradient');
-      grad.setAttribute('id','g'); grad.setAttribute('x1','0'); grad.setAttribute('y1','0'); grad.setAttribute('x2','1'); grad.setAttribute('y2','0');
-      const s1=document.createElementNS(SVG_NS,'stop'); s1.setAttribute('offset','0'); s1.setAttribute('stop-color','#2ecc71');
-      const s2=document.createElementNS(SVG_NS,'stop'); s2.setAttribute('offset','1'); s2.setAttribute('stop-color','#1fa85a');
-      grad.appendChild(s1); grad.appendChild(s2); defs.appendChild(grad); svg.appendChild(defs);
-
-      const rect1=document.createElementNS(SVG_NS,'rect');
-      rect1.setAttribute('x','2'); rect1.setAttribute('y','2'); rect1.setAttribute('width','156'); rect1.setAttribute('height','76');
-      rect1.setAttribute('rx','8'); rect1.setAttribute('fill','url(#g)'); rect1.setAttribute('stroke','#0d6a3b'); rect1.setAttribute('stroke-width','3');
-      svg.appendChild(rect1);
-
-      const rect2=document.createElementNS(SVG_NS,'rect');
-      rect2.setAttribute('x','14'); rect2.setAttribute('y','14'); rect2.setAttribute('width','132'); rect2.setAttribute('height','52');
-      rect2.setAttribute('rx','6'); rect2.setAttribute('fill','none'); rect2.setAttribute('stroke','#0d6a3b'); rect2.setAttribute('stroke-width','2'); rect2.setAttribute('opacity','.6');
-      svg.appendChild(rect2);
-
-      const c1=document.createElementNS(SVG_NS,'circle'); c1.setAttribute('cx','40'); c1.setAttribute('cy','40'); c1.setAttribute('r','14'); c1.setAttribute('fill','#0d6a3b'); c1.setAttribute('opacity','.25');
-      const c2=document.createElementNS(SVG_NS,'circle'); c2.setAttribute('cx','120'); c2.setAttribute('cy','40'); c2.setAttribute('r','14'); c2.setAttribute('fill','#0d6a3b'); c2.setAttribute('opacity','.25');
-      svg.appendChild(c1); svg.appendChild(c2);
-
-      const text=document.createElementNS(SVG_NS,'text');
-      text.setAttribute('x','80'); text.setAttribute('y','48'); text.setAttribute('text-anchor','middle');
-      text.setAttribute('font-size','28'); text.setAttribute('font-family','Verdana'); text.setAttribute('fill','#0b5e34'); text.setAttribute('font-weight','700');
-      text.textContent='$'; svg.appendChild(text);
-
-      const tri=document.createElementNS(SVG_NS,'path');
-      tri.setAttribute('d','M8 8 L24 8 L8 24 Z'); tri.setAttribute('fill','#fff'); tri.setAttribute('opacity','.25');
-      svg.appendChild(tri);
-
-      return svg;
-    }
-
+    /* ===== Dollars (SVG) ===== */
+    const SVG_NS='http://www.w3.org/2000/svg';const bills=[];const BILL_G=900,BILL_AIR=0.993,WIND=20,FLUTTER=120;
+    function createBillSVG(){const s=document.createElementNS(SVG_NS,'svg');s.setAttribute('viewBox','0 0 160 80');s.setAttribute('width','96');s.setAttribute('height','48');s.classList.add('bill');
+      const defs=document.createElementNS(SVG_NS,'defs');const g=document.createElementNS(SVG_NS,'linearGradient');g.setAttribute('id','g');g.setAttribute('x1','0');g.setAttribute('y1','0');g.setAttribute('x2','1');g.setAttribute('y2','0');
+      const a1=document.createElementNS(SVG_NS,'stop');a1.setAttribute('offset','0');a1.setAttribute('stop-color','#2ecc71');const a2=document.createElementNS(SVG_NS,'stop');a2.setAttribute('offset','1');a2.setAttribute('stop-color','#1fa85a');g.append(a1,a2);defs.appendChild(g);s.appendChild(defs);
+      const r1=document.createElementNS(SVG_NS,'rect');r1.setAttribute('x','2');r1.setAttribute('y','2');r1.setAttribute('width','156');r1.setAttribute('height','76');r1.setAttribute('rx','8');r1.setAttribute('fill','url(#g)');r1.setAttribute('stroke','#0d6a3b');r1.setAttribute('stroke-width','3');s.appendChild(r1);
+      const r2=document.createElementNS(SVG_NS,'rect');r2.setAttribute('x','14');r2.setAttribute('y','14');r2.setAttribute('width','132');r2.setAttribute('height','52');r2.setAttribute('rx','6');r2.setAttribute('fill','none');r2.setAttribute('stroke','#0d6a3b');r2.setAttribute('stroke-width','2');r2.setAttribute('opacity','.6');s.appendChild(r2);
+      const c1=document.createElementNS(SVG_NS,'circle');c1.setAttribute('cx','40');c1.setAttribute('cy','40');c1.setAttribute('r','14');c1.setAttribute('fill','#0d6a3b');c1.setAttribute('opacity','.25');
+      const c2=document.createElementNS(SVG_NS,'circle');c2.setAttribute('cx','120');c2.setAttribute('cy','40');c2.setAttribute('r','14');c2.setAttribute('fill','#0d6a3b');c2.setAttribute('opacity','.25');s.append(c1,c2);
+      const t=document.createElementNS(SVG_NS,'text');t.setAttribute('x','80');t.setAttribute('y','48');t.setAttribute('text-anchor','middle');t.setAttribute('font-size','28');t.setAttribute('font-family','Verdana');t.setAttribute('fill','#0b5e34');t.setAttribute('font-weight','700');t.textContent='$';s.appendChild(t);
+      const tri=document.createElementNS(SVG_NS,'path');tri.setAttribute('d','M8 8 L24 8 L8 24 Z');tri.setAttribute('fill','#fff');tri.setAttribute('opacity','.25');s.appendChild(tri);
+      return s;}
     class DollarBill{
       constructor(cx,cy){
-        this.el = createBillSVG();
-        document.body.appendChild(this.el);
-
-        this.x=cx-48; this.y=cy-24;
-        const ang=Math.random()*Math.PI*2, speed=180+Math.random()*420;
-        this.vx=Math.cos(ang)*speed; this.vy=Math.sin(ang)*speed-80;
-        this.rz=Math.random()*360; this.ry=Math.random()*180; this.spinZ=Math.random()*90-45; this.spinY=180+Math.random()*240;
-        this.age=0; this.life=8+Math.random()*4; this.opacity=1; this.phase=Math.random()*Math.PI*2;
+        this.el=createBillSVG();document.body.appendChild(this.el);
+        this.x=cx-48;this.y=cy-24;
+        const ang=Math.random()*Math.PI*2,speed=180+Math.random()*420;
+        this.vx=Math.cos(ang)*speed;this.vy=Math.sin(ang)*speed-80;
+        this.rz=Math.random()*360;this.ry=Math.random()*180;
+        this.spinZ=Math.random()*90-45;this.spinY=180+Math.random()*240;
+        this.age=0;this.life=8+Math.random()*4;this.opacity=1;this.phase=Math.random()*Math.PI*2;
         this.updateEl();
       }
       step(dt){
         this.age+=dt;
         const flutterX=Math.sin(this.age*3+this.phase)*FLUTTER;
-        this.vx += (WIND + flutterX*0.2) * dt;
-        this.vx *= Math.pow(BILL_AIR, dt*60);
-        this.vy = this.vy*Math.pow(BILL_AIR, dt*60) + BILL_G*dt;
-        this.x += this.vx*dt; this.y += this.vy*dt;
-        this.rz += this.spinZ*dt; this.ry += this.spinY*dt;
-        if(this.y>innerHeight+160 || this.age>this.life) this.opacity -= 2*dt;
-        this.updateEl(); return this.opacity>0;
+        this.vx+=(WIND+flutterX*0.2)*dt;
+        this.vx*=Math.pow(BILL_AIR,dt*60);
+        this.vy=this.vy*Math.pow(BILL_AIR,dt*60)+BILL_G*dt;
+        this.x+=this.vx*dt;this.y+=this.vy*dt;
+        this.rz+=this.spinZ*dt;this.ry+=this.spinY*dt;
+        if(this.y>innerHeight+160||this.age>this.life)this.opacity-=2*dt;
+        this.updateEl();return this.opacity>0;
       }
       updateEl(){
         this.el.style.opacity=Math.max(0,Math.min(1,this.opacity));
         this.el.style.transform=`translate3d(${this.x}px,${this.y}px,0) rotate(${this.rz}deg) rotateY(${this.ry}deg)`;
       }
-      destroy(){ this.el.remove(); }
+      destroy(){this.el.remove();}
     }
-    function rainDollars(count=140){
-      const cx=innerWidth/2, cy=innerHeight*0.38;
-      for(let i=0;i<count;i++) bills.push(new DollarBill(cx,cy));
+    function rainDollars(n=140){
+      const cx=innerWidth/2,cy=innerHeight*0.38;
+      for(let i=0;i<n;i++) bills.push(new DollarBill(cx,cy));
     }
-    (function billLoop(){
+    (function(){
       let last=performance.now();
       function step(ts){
         const dt=Math.min(0.05,(ts-last)/1000); last=ts;
@@ -289,25 +262,20 @@
       requestAnimationFrame(step);
     })();
 
-    /* ===== dula.png: вылет в центр при клике на подарок (в 2 раза медленнее) ===== */
+    /* ===== Dula click ===== */
     const giftCta=document.getElementById('giftCta');
     const giftBox=document.getElementById('giftBox');
     const giftLabel=document.getElementById('giftLabel');
-
-    function spawnDula(fromX, fromY){
-      const el=new Image(); el.src=new URL('dula.png', BASE).href; el.className='dula'; document.body.appendChild(el);
-      const w=140,h=140;
-      el.style.left=(fromX - w/2)+'px'; el.style.top=(fromY - h/2)+'px';
-      const toX=innerWidth/2 - w/2, toY=innerHeight/2 - h/2;
-      const dx=toX-(fromX-w/2), dy=toY-(fromY-h/2);
-
-      // 2x медленнее: duration 2400 мс (было 1200)
-      const anim1 = el.animate(
+    function spawnDula(fromX,fromY){
+      const el=new Image(); el.src=new URL('dula.png',BASE).href; el.className='dula'; document.body.appendChild(el);
+      const w=140,h=140; el.style.left=(fromX-w/2)+'px'; el.style.top=(fromY-h/2)+'px';
+      const toX=innerWidth/2-w/2,toY=innerHeight/2-h/2; const dx=toX-(fromX-w/2),dy=toY-(fromY-h/2);
+      const anim1=el.animate(
         [{transform:`translate(0,0) scale(.8) rotate(0deg)`,opacity:0},
          {transform:`translate(${dx}px,${dy}px) scale(1.1) rotate(720deg)`,opacity:1}],
         {duration:2400,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}
       );
-      anim1.onfinish = ()=>{
+      anim1.onfinish=()=>{
         el.animate(
           [{transform:`translate(${dx}px,${dy}px) scale(1.1) rotate(720deg)`,opacity:1},
            {transform:`translate(${dx}px,${dy}px) scale(1.1) rotate(760deg)`,opacity:0}],
@@ -318,22 +286,18 @@
     }
     function giftClick(){
       const r=giftCta.getBoundingClientRect();
-      spawnDula(r.left + r.width/2, r.top + r.height/2);
+      spawnDula(r.left+r.width/2,r.top+r.height/2);
     }
     giftBox.addEventListener('click', giftClick);
     giftLabel.addEventListener('click', giftClick);
 
-    /* ===== Кнопки ===== */
-    const boomBtn=document.getElementById('boom');
-    const confBtn=document.getElementById('conf');
-
-    boomBtn.addEventListener('click', ()=>{
-      const cx=W/2, cy=H/2.3;
-      firework(cx,cy);
+    /* ===== Buttons ===== */
+    document.getElementById('boom').addEventListener('click', ()=>{
+      firework(c.width/2, c.height/2.3);
       burstPhotos(8);
       song.currentTime=0; song.play().catch(()=>{});
     });
-    confBtn.addEventListener('click', ()=>{ rainDollars(140); });
+    document.getElementById('conf').addEventListener('click', ()=>{ rainDollars(140); });
   </script>
 </body>
 </html>
