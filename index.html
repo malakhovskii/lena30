@@ -26,7 +26,6 @@
       -webkit-background-clip:text;color:transparent;text-shadow:0 0 18px rgba(255,255,255,.35);
       margin:0 0 10px;
     }
-    /* Подзаголовок — 3x крупнее */
     .tagline{
       margin:14px 0 8px;
       font-weight:600;
@@ -34,100 +33,69 @@
       line-height:1.2;
       opacity:.95;
     }
-
     img.pfp{
       width:260px;height:260px;border-radius:50%;object-fit:cover;
       border:4px solid #fff;box-shadow:0 0 25px rgba(255,255,255,0.3)
     }
 
-    .btns{margin-top:20px;display:flex;gap:18px;justify-content:center}
-    /* Кнопки — 2x крупнее */
+    .btns{margin-top:16px;display:flex;gap:14px;justify-content:center}
+    /* Кнопки — 2x меньше */
     button{
-      cursor:pointer;border:none;border-radius:16px;
-      padding:20px 28px;font-weight:800;font-size:32px;
+      cursor:pointer;border:none;border-radius:12px;
+      padding:10px 14px;font-weight:800;font-size:16px;
       color:#0a1726;background:linear-gradient(180deg,#fff,#e9f3ff);
       box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.2s
     }
     button:hover{transform:translateY(-2px)}
 
-    .poem-quote{
-      position:fixed;
-      left:50%; transform:translateX(-50%);
-      bottom: calc(env(safe-area-inset-bottom) + 12px);
-      text-align:center; z-index:5;
-      font-family:Montserrat;font-weight:800;font-size:clamp(18px,2vw,28px);
-      background:conic-gradient(from 180deg,#7de1ff,#ff7de5,#ffd38a,#b89cff);
-      -webkit-background-clip:text;color:transparent;text-shadow:0 0 12px rgba(255,255,255,0.6);
-      animation:glow 4s ease-in-out infinite;
-      pointer-events:none; max-width:92vw; line-height:1.1;
-    }
-    @keyframes glow{0%,100%{text-shadow:0 0 8px rgba(255,255,255,0.6)}50%{text-shadow:0 0 20px rgba(255,255,255,0.9)}}
-
-    /* Фото-проектыли — 2x размер */
+    /* Фото-проектыли — минус 30% (с 260 до 182) */
     .photo-fall{
-      position:fixed;left:0;top:0;width:260px;height:260px;border-radius:24px;object-fit:cover;
+      position:fixed;left:0;top:0;width:182px;height:182px;border-radius:22px;object-fit:cover;
       box-shadow:0 12px 28px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.9) inset;
       transform:translate3d(0,0,0) rotateY(0deg) rotateZ(0deg);
       opacity:.95;will-change:transform,opacity;pointer-events:none;z-index:4;
     }
+
     .bill{
       position:fixed;left:0;top:0;width:96px;height:48px;opacity:.98;z-index:4;
       transform:translate3d(0,0,0) rotate(0deg) rotateY(0deg);
       will-change:transform,opacity;pointer-events:none;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35));
     }
 
-    .gift-cta{position:fixed;right:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;z-index:6}
-    /* Текст подарка — 3x крупнее */
+    /* Подарок (уменьшено в 2 раза) */
+    .gift-cta{position:fixed;right:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:6}
     .gift-label{
       font-family:Montserrat;font-weight:800;cursor:pointer;text-align:right;white-space:nowrap;
       background:linear-gradient(90deg,#6ecbff,#1e90ff,#6ecbff);
       -webkit-background-clip:text;color:transparent;
       animation:shimmer 3s linear infinite, pulse 1.6s ease-in-out infinite;
-      font-size:clamp(24px,3.2vw,48px);
+      font-size:clamp(12px,1.6vw,24px); /* было 24–48 */
       line-height:1.05;
       text-shadow:0 0 12px #6ecbff66;
     }
     @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
     @keyframes pulse{0%,100%{text-shadow:0 0 10px #6ecbff80}50%{text-shadow:0 0 20px #6ecbff}}
-    /* Картинка подарка — 2x больше */
-    .gift-img{width:144px;height:144px;border-radius:20px;object-fit:cover;cursor:pointer;
+    .gift-img{width:72px;height:72px;border-radius:16px;object-fit:cover;cursor:pointer;
       box-shadow:0 10px 24px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.65) inset}
     .gift-img:hover{transform:translateY(-2px) scale(1.03)}
 
+    /* Дуля (осталась увеличенной 280×280) */
     .dula{
-      position:fixed;left:0;top:0;width:240px;height:240px;transform-origin:50% 50%;
-      pointer-events:none;z-index:8;opacity:0;filter:drop-shadow(0 12px 26px rgba(0,0,0,.45));
+      position:fixed;left:0;top:0;width:280px;height:280px;transform-origin:50% 50%;
+      pointer-events:none;z-index:8;opacity:0;
+      filter:drop-shadow(0 12px 26px rgba(0,0,0,.45));
     }
 
-    /* ======= MOBILE ======= */
+    /* Мобилка */
     @media (max-width:520px){
       .shell{ transform: translateY(-2vh); }
       .card{ padding:18px 16px; border-radius:20px; }
       h1{ font-size:clamp(32px,9vw,56px); }
       img.pfp{ width:200px; height:200px; }
-      .btns{ gap:12px; margin-top:12px; margin-bottom:84px; }
-      button{ padding:16px 20px; font-size:26px; border-radius:14px; }
-      .poem-quote{ font-size:clamp(14px,4.6vw,18px);
-                   bottom: calc(env(safe-area-inset-bottom) + 8px); }
-      .gift-img{ width:120px; height:120px; }
-      .gift-label{ font-size:clamp(22px,6vw,38px); }
-    }
-
-    /* ======= DESKTOP UPSCALE ======= */
-    @media (min-width:768px){
-      .shell{ transform:translateY(-7vh);}
-      .card{ width:min(92vw,980px); padding:40px 48px; border-radius:28px;}
-      h1{ font-size:clamp(56px,6vw,96px); margin-bottom:16px;}
-      img.pfp{ width:320px;height:320px;box-shadow:0 0 30px rgba(255,255,255,.35);}
-      .btns{ gap:22px; margin-top:18px; margin-bottom:32px;}
-      .poem-quote{ font-size:clamp(18px,1.6vw,28px);}
-    }
-    @media (min-width:1200px){
-      .shell{ transform:translateY(-8vh);}
-      .card{ width:min(88vw,1100px); padding:48px 56px;}
-      h1{ font-size:clamp(64px,5.4vw,110px);}
-      img.pfp{ width:360px;height:360px;}
-      .btns{ margin-bottom:36px;}
+      .btns{ gap:10px; margin-top:10px; }
+      button{ padding:12px 14px; font-size:15px; border-radius:12px; }
+      .gift-img{ width:60px; height:60px; }
+      .gift-label{ font-size:clamp(11px,4.2vw,18px); }
     }
   </style>
 </head>
@@ -138,7 +106,7 @@
     <div class="card">
       <h1>Happy 30th, Лена!</h1>
       <img class="pfp" id="pfp" alt="Лена">
-      <p class="tagline">Пусть этот год будет ярче салютов над Чикаго</p>
+      <p class="tagline">Пусть этот год будет ярче салютов над Чикаго ✨</p>
       <div class="btns">
         <button id="boom">Салют!</button>
         <button id="conf">Конфетти!</button>
@@ -146,13 +114,7 @@
     </div>
   </div>
 
-  <div class="poem-quote">
-     Лена в банке — как рыба в воде,<br>
-    Где деньги крутятся — Лена везде!<br>
-    В отделе стирки купюр без стирки —<br>
-    Она звезда финансовой интриги! 
-  </div>
-
+  <!-- Подарок внизу справа -->
   <div class="gift-cta" id="giftCta" title="Нажми — получи подарок 😉">
     <div class="gift-label" id="giftLabel">Получить<br>подарок от Женька</div>
     <img class="gift-img" id="giftBox" alt="Подарок">
@@ -160,10 +122,12 @@
 
   <script>
     const BASE = document.baseURI;
+
+    // Фото и подарок из корня/подпапки при деплое
     document.getElementById('pfp').src     = new URL('friend.jpg',  BASE).href;
     document.getElementById('giftBox').src = new URL('present.jpg', BASE).href;
 
-    /* ===== Fireworks canvas ===== */
+    /* ===== Canvas: фейерверк ===== */
     const c=document.getElementById('fx'),ctx=c.getContext('2d');let W,H,DPR;
     function resize(){DPR=window.devicePixelRatio||1;W=c.width=innerWidth*DPR;H=c.height=innerHeight*DPR;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
     resize();addEventListener('resize',resize);
@@ -174,14 +138,14 @@
     function firework(cx,cy){for(let i=0;i<320;i++){const a=Math.random()*6.283,sp=(2+Math.random()*5)*DPR,col=COLORS[i%COLORS.length];parts.push(new P(cx,cy,Math.cos(a)*sp,Math.sin(a)*sp,110+Math.random()*90,col,1.8*DPR));}}
     function loop(){ctx.clearRect(0,0,W,H);ctx.fillStyle='rgba(6,14,28,.25)';ctx.fillRect(0,0,W,H);parts=parts.filter(p=>{p.step(1);return p.draw()});requestAnimationFrame(loop);}requestAnimationFrame(loop);
 
-    /* ===== Audio + photo burst (2x size) ===== */
+    /* ===== Аудио и залп фото (уменьшены на 30%) ===== */
     const song=new Audio(new URL('Irina.mp3',BASE).href);song.volume=.4;
     const PHOTOS=['sasha.png','sasha_2.png','id.png'].map(n=>new URL(n,BASE).href);
     const photoProjectiles=[];const PHOTO_G=1200/4,PHOTO_AIR=0.994,MAX_AGE=9;
     class PhotoProjectile{
       constructor(src,cx,cy){
         this.el=new Image();this.el.src=src;this.el.className='photo-fall';document.body.appendChild(this.el);
-        this.w=260;this.h=260;                        // 2x
+        this.w=182;this.h=182;                               // уменьшено на 30%
         this.x=cx-this.w/2;this.y=cy-this.h/2;
         const ang=Math.random()*Math.PI*2,speed=280+Math.random()*440;
         this.vx=Math.cos(ang)*speed;this.vy=Math.sin(ang)*speed-120;
@@ -194,7 +158,7 @@
         this.vy=this.vy*Math.pow(PHOTO_AIR,dt*60)+PHOTO_G*dt;
         this.x+=this.vx*dt;this.y+=this.vy*dt;
         this.ry+=this.spinY*dt;this.rz+=8*dt;
-        if(this.y>innerHeight+240||this.age>MAX_AGE)this.opacity-=2*dt;
+        if(this.y>innerHeight+180||this.age>MAX_AGE)this.opacity-=2*dt; // порог ниже под новый размер
         this.updateEl();return this.opacity>0;
       }
       updateEl(){
@@ -206,7 +170,7 @@
     (function(){let last=performance.now();function step(ts){const dt=Math.min(0.05,(ts-last)/1000);last=ts;for(let i=photoProjectiles.length-1;i>=0;i--){if(!photoProjectiles[i].step(dt)){photoProjectiles[i].destroy();photoProjectiles.splice(i,1);}}requestAnimationFrame(step);}requestAnimationFrame(step);})();
     function burstPhotos(n=8){const cx=innerWidth/2,cy=innerHeight*0.38;for(let i=0;i<n;i++){photoProjectiles.push(new PhotoProjectile(PHOTOS[i%PHOTOS.length],cx,cy));}}
 
-    /* ===== Dollars (SVG) ===== */
+    /* ===== Доллары ===== */
     const SVG_NS='http://www.w3.org/2000/svg';const bills=[];const BILL_G=900,BILL_AIR=0.993,WIND=20,FLUTTER=120;
     function createBillSVG(){const s=document.createElementNS(SVG_NS,'svg');s.setAttribute('viewBox','0 0 160 80');s.setAttribute('width','96');s.setAttribute('height','48');s.classList.add('bill');
       const defs=document.createElementNS(SVG_NS,'defs');const g=document.createElementNS(SVG_NS,'linearGradient');g.setAttribute('id','g');g.setAttribute('x1','0');g.setAttribute('y1','0');g.setAttribute('x2','1');g.setAttribute('y2','0');
@@ -262,14 +226,12 @@
       requestAnimationFrame(step);
     })();
 
-    /* ===== Dula click ===== */
-    const giftCta=document.getElementById('giftCta');
-    const giftBox=document.getElementById('giftBox');
-    const giftLabel=document.getElementById('giftLabel');
+    /* ===== Дуля ===== */
     function spawnDula(fromX,fromY){
-      const el=new Image(); el.src=new URL('dula.png',BASE).href; el.className='dula'; document.body.appendChild(el);
-      const w=140,h=140; el.style.left=(fromX-w/2)+'px'; el.style.top=(fromY-h/2)+'px';
-      const toX=innerWidth/2-w/2,toY=innerHeight/2-h/2; const dx=toX-(fromX-w/2),dy=toY-(fromY-h/2);
+      const el=new Image();el.src=new URL('dula.png',BASE).href;el.className='dula';document.body.appendChild(el);
+      const w=280,h=280;
+      el.style.left=(fromX-w/2)+'px';el.style.top=(fromY-h/2)+'px';
+      const toX=innerWidth/2-w/2,toY=innerHeight/2-h/2;const dx=toX-(fromX-w/2),dy=toY-(fromY-h/2);
       const anim1=el.animate(
         [{transform:`translate(0,0) scale(.8) rotate(0deg)`,opacity:0},
          {transform:`translate(${dx}px,${dy}px) scale(1.1) rotate(720deg)`,opacity:1}],
@@ -284,6 +246,9 @@
         setTimeout(()=>el.remove(),2400);
       };
     }
+    const giftCta=document.getElementById('giftCta');
+    const giftBox=document.getElementById('giftBox');
+    const giftLabel=document.getElementById('giftLabel');
     function giftClick(){
       const r=giftCta.getBoundingClientRect();
       spawnDula(r.left+r.width/2,r.top+r.height/2);
@@ -291,7 +256,7 @@
     giftBox.addEventListener('click', giftClick);
     giftLabel.addEventListener('click', giftClick);
 
-    /* ===== Buttons ===== */
+    /* ===== Кнопки ===== */
     document.getElementById('boom').addEventListener('click', ()=>{
       firework(c.width/2, c.height/2.3);
       burstPhotos(8);
