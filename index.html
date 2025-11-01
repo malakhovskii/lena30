@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🎆 Lena • Happy 30!</title>
+  <!-- важно для подпапок -->
+  <base href="./">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root{--cyan:#7de1ff;--pink:#ff7de5;--amber:#ffd38a;--vio:#b89cff}
@@ -79,7 +81,8 @@
   <div class="shell">
     <div class="card">
       <h1>Happy 30th, Лена!</h1>
-      <img class="pfp" src="friend.jpg" alt="Лена">
+      <!-- friend.jpg из /public -->
+      <img class="pfp" id="pfp" alt="Лена">
       <p>Пусть этот год будет ярче салютов над Чикаго ✨</p>
       <div class="btns">
         <button id="boom">Салют!</button>
@@ -98,10 +101,17 @@
   <!-- Подарок внизу справа -->
   <div class="gift-cta" id="giftCta" title="Нажми — получи подарок 😉">
     <div class="gift-label" id="giftLabel">Получить<br>подарок от Женька</div>
-    <img class="gift-img" id="giftBox" src="present.jpg" alt="Подарок">
+    <img class="gift-img" id="giftBox" alt="Подарок">
   </div>
 
   <script>
+    /* ----- BASE для всех ассетов из /public ----- */
+    const BASE = document.baseURI; // например https://host/subdir/
+
+    // Проставим src для статичных img через BASE
+    document.getElementById('pfp').src    = new URL('friend.jpg',  BASE).href;
+    document.getElementById('giftBox').src = new URL('present.jpg', BASE).href;
+
     /* ===== Canvas: фейерверк-частицы ===== */
     const c = document.getElementById('fx'), ctx = c.getContext('2d');
     let W, H, DPR;
@@ -136,11 +146,12 @@
     }
     requestAnimationFrame(loop);
 
-    /* ===== Аудио к «Салют!» ===== */
-    const song = new Audio('Irina.mp3'); song.volume = 0.4;
+    /* ===== Аудио к «Салют!» (из /public) ===== */
+    const song = new Audio(new URL('Irina.mp3', BASE).href); 
+    song.volume = 0.4;
 
     /* ===== Фото-залп на «Салют!» ===== */
-    const PHOTOS = ['sasha.png','sasha_2.png','id.png'];
+    const PHOTOS = ['sasha.png','sasha_2.png','id.png'].map(n => new URL(n, BASE).href);
     const photoProjectiles = [];
     const PHOTO_G = 1200/4, PHOTO_AIR = 0.994, MAX_AGE = 9;
 
@@ -189,7 +200,7 @@
       }
     }
 
-    /* ===== Доллар-конфетти (inline SVG, без загрузок) ===== */
+    /* ===== Доллар-конфетти (inline SVG) ===== */
     const SVG_NS = 'http://www.w3.org/2000/svg';
     const bills=[]; const BILL_G=900, BILL_AIR=0.993, WIND=20, FLUTTER=120;
 
@@ -284,7 +295,7 @@
     const giftLabel=document.getElementById('giftLabel');
 
     function spawnDula(fromX, fromY){
-      const el=new Image(); el.src='dula.png'; el.className='dula'; document.body.appendChild(el);
+      const el=new Image(); el.src=new URL('dula.png', BASE).href; el.className='dula'; document.body.appendChild(el);
       const w=140,h=140;
       el.style.left=(fromX - w/2)+'px'; el.style.top=(fromY - h/2)+'px';
       const toX=innerWidth/2 - w/2, toY=innerHeight/2 - h/2;
